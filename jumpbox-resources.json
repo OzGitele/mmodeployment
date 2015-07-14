@@ -30,7 +30,7 @@
   },
     "variables": {
         "vmSize": "Standard_A0",
-        "securityGroupName": "[concat(parameters('commonSettings').prefixForDeployment, 'jumpboxNSG')]",
+        "securityGroupName": "jumpboxNSG"
     },
     "resources": [
         {
@@ -60,7 +60,7 @@
         {
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'jumpboxPublicIP')]",
+            "name": "jumpboxPublicIP",
             "location": "[parameters('commonSettings').location]",
             "properties": {
                 "publicIPAllocationMethod": "Dynamic"
@@ -69,7 +69,7 @@
         {
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'jumpboxNIC')]",
+            "name": "jumpboxNIC",
             "location": "[parameters('commonSettings').location]",
             "dependsOn": [
                 "[concat('Microsoft.Network/publicIPAddresses/', 'jumpboxPublicIP')]",
@@ -98,7 +98,7 @@
         {
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'jumpboxVM')]",
+            "name": "jumpboxVM",
             "location": "[parameters('commonSettings').location]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', 'jumpboxNIC')]"
