@@ -3,20 +3,21 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
-            "type": "string",
+          "type": "string",
+          "defaultValue": "mmoadmin",
             "metadata": {
                 "description": "Administrator user name used when provisioning virtual machines (which also becomes a system user administrator in MongoDB)"
             }
         },
         "adminPassword": {
-            "type": "securestring",
+          "type": "securestring",
+          "defaultValue": "WhereLinux?",
             "metadata": {
                 "description": "Administrator password used when provisioning virtual machines (which is also a password for the system administrator in MongoDB)"
             }
         },
         "storageAccountName": {
             "type": "string",
-            "defaultValue": "",
             "metadata": {
                 "description": "Unique namespace for the Storage Account where the Virtual Machine's disks will be placed (this name will be used as a prefix to create one or more storage accounts as per t-shirt size)"
             }
@@ -79,6 +80,7 @@
 
       "dnsNameForPublicIP": {
         "type": "string",
+        "defaultValue": "10.0.0.0/16",
         "metadata": {
           "description": "Unique DNS Name for the Public IP used to access the Front End Virtual Machine."
         }
@@ -152,7 +154,8 @@
             }
         },
         "replicaSetKey": {
-            "type": "string",
+          "type": "string",
+          "defaultValue": "RSetKey",
             "metadata": {
                 "description": "The shared secret key for the MongoDB replica set"
             }
