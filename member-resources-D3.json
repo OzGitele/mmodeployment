@@ -20,12 +20,7 @@
           "Description": "Network settings object"
         }
       },
-      "prefixForDeployment": {
-            "type": "string",
-            "metadata": {
-                "Description": "resource name prefix"
-            }
-        },
+      
         "machineSettings": {
             "type": "object",
             "metadata": {
@@ -38,7 +33,7 @@
     "resources": [
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[concat(parameters('prefixForDeployment'), 'nicMember', parameters('machineSettings').machineIndex)]",
+            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'nicMember', parameters('machineSettings').machineIndex)]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "properties": {
@@ -58,7 +53,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(parameters('prefixForDeployment'), 'vmMember', parameters('machineSettings').machineIndex)]",
+            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'vmMember', parameters('machineSettings').machineIndex)]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "dependsOn": [

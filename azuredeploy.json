@@ -3,7 +3,8 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
-            "type": "string",
+          "type": "string",
+          "defaultValue": "mmoadmin",
             "metadata": {
                 "description": "Administrator user name used when provisioning virtual machines (which also becomes a system user administrator in MongoDB)"
             }
@@ -219,7 +220,8 @@
         "arbiterTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('arbiterTemplate', variables('clusterSpec').arbiter)))]",
         "commonSettings": {
             "availabilitySetName": "[concat(variables('prefixForDeployment'),'mongodbAvailSet')]",
-            "location": "[parameters('location')]"
+          "location": "[parameters('location')]",
+          "prefixForDeployment": "[parameters('prefixForDeployment')]"
         },
         "storageSettings": {
             "vhdStorageAccountName": "[parameters('storageAccountName')]",
@@ -356,9 +358,7 @@
 
                   "machineSettings": {
                     "value": "[variables('machineSettings')]"
-                  },
-                  "prefixForDeployment": {
-                        "value": "[parameters('prefixForDeployment')]"
+                  
                   }
                 }
             }
@@ -394,9 +394,7 @@
                   "networkSettings": {
                     "value": "[variables('networkSettings')]"
                   },
-                  "prefixForDeployment": {
-                        "value": "[parameters('prefixForDeployment')]"
-                  },
+                  
                     "machineSettings": {
                         "value": {
                             "adminUsername": "[variables('machineSettings').adminUsername]",
@@ -483,9 +481,7 @@
                   "networkSettings": {
                     "value": "[variables('networkSettings')]"
                   },
-                  "prefixForDeployment": {
-                        "value": "[parameters('prefixForDeployment')]"
-                  },
+                  
                     "machineSettings": {
                         "value": {
                             "adminUsername": "[variables('machineSettings').adminUsername]",
