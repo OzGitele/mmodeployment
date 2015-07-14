@@ -38,7 +38,7 @@
     "resources": [
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "nicArbiter",
+            "name": "[concat(parameters('prefixForDeployment'), 'nicArbiter')]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "properties": {
