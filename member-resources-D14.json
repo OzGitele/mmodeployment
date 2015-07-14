@@ -14,10 +14,16 @@
                 "Description": "Storage settings object"
             }
         },
-        "networkSettings": {
-            "type": "object",
+      "networkSettings": {
+        "type": "object",
+        "metadata": {
+          "Description": "Network settings object"
+        }
+      },
+       "prefixForDeployment": {
+            "type": "string",
             "metadata": {
-                "Description": "Network settings object"
+                "Description": "resource name prefix"
             }
         },
         "machineSettings": {
@@ -52,7 +58,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat('vmMember', parameters('machineSettings').machineIndex)]",
+            "name": "[concat(parameters('prefixForDeployment'), 'vmMember', parameters('machineSettings').machineIndex)]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "dependsOn": [

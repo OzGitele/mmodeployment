@@ -70,11 +70,17 @@
           "description": "The IP address prefix that will be used for constructing a static private IP address for each node in the cluster"
         }
       },
+      "prefixForDeployment": {
+        "type": "string",
+        "metadata": {
+          "description": "Prefix for all resource names in deployment."
+        }
+      },
 
       "dnsNameForPublicIP": {
         "type": "string",
         "metadata": {
-          "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+          "description": "Unique DNS Name for the Public IP used to access the Front End Virtual Machine."
         }
       },
       "ubuntuOSVersion": {
@@ -91,7 +97,7 @@
         "15.04"
       ],
         "metadata": {
-          "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
+          "description": "The Ubuntu version for the Front End VM. This will pick a fully patched image of this given Ubuntu version."
         }
       },
 
@@ -236,7 +242,7 @@
         "jumpboxTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('jumpboxTemplate', parameters('jumpbox'))))]",
         "arbiterTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('arbiterTemplate', variables('clusterSpec').arbiter)))]",
         "commonSettings": {
-            "availabilitySetName": "mongodbAvailSet",
+            "availabilitySetName": "[concat(parameters('prefixForDeployment'),'mongodbAvailSet')]",
             "location": "[parameters('location')]"
         },
         "storageSettings": {
@@ -368,8 +374,11 @@
                             "destinationVhdsContainer": "[concat('https://', variables('storageSettings').vhdStorageAccountName, '0', variables('vmStorageAccountDomain'), '/', variables('storageSettings').vhdContainerName, '/')]"
                         }
                     },
-                    "networkSettings": {
-                        "value": "[variables('networkSettings')]"
+                  "networkSettings": {
+                    "value": "[variables('networkSettings')]"
+                  },
+                   "prefixForDeployment": {
+                        "value": "[parameters('prefixForDeployment')]"
                     },
                     "machineSettings": {
                         "value": "[variables('machineSettings')]"
@@ -405,8 +414,11 @@
                             "destinationVhdsContainer": "[concat('https://', variables('storageSettings').vhdStorageAccountName, variables(concat('storageAccountFor', parameters('tshirtSize'), '_', copyindex())), variables('vmStorageAccountDomain'), '/', variables('storageSettings').vhdContainerName, '/')]"
                         }
                     },
-                    "networkSettings": {
-                        "value": "[variables('networkSettings')]"
+                  "networkSettings": {
+                    "value": "[variables('networkSettings')]"
+                  },
+                  "prefixForDeployment": {
+                        "value": "[parameters('prefixForDeployment')]"
                     },
                     "machineSettings": {
                         "value": {
