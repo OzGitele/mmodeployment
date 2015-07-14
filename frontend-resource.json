@@ -29,23 +29,23 @@
         }
   },
   "variables": {
-    "location": "parameters('commonSettings').location", 
+    "location": "[parameters('commonSettings').location]", 
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
     "OSDiskName": "osdiskforlinuxsimple",
     "nicName": "myVMNic",
-    "addressPrefix": "parameters('networkSettings').addressPrefix", 
-    "subnetName": "parameters('networkSettings').subnetName", 
-    "subnetPrefix": "parameters('networkSettings').subnetPrefix", 
+    "addressPrefix": "[parameters('networkSettings').addressPrefix]", 
+    "subnetName": "[parameters('networkSettings').subnetName]", 
+    "subnetPrefix": "[parameters('networkSettings').subnetPrefix]", 
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "vmName": "MyUbuntuVM",
     "vmSize": "Standard_D1",
-    "virtualNetworkName": "parameters('networkSettings').virtualNetworkName",
-    "vnetID": "parameters('networkSettings').vnetID",
-    "subnetRef": "parameters('networkSettings').subnetRef"
+    "virtualNetworkName": "[parameters('networkSettings').virtualNetworkName]",
+    "vnetID": "[parameters('networkSettings').vnetID]",
+    "subnetRef": "[parameters('networkSettings').subnetRef]"
   },
   "resources": [
     //{
