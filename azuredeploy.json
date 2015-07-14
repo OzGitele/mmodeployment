@@ -238,11 +238,12 @@
         "jumpboxTemplateDisabled": "empty-resources.json",
         "arbiterTemplateEnabled": "arbiter-resources.json",
         "arbiterTemplateDisabled": "empty-resources.json",
+        "prefixForDeployment": "[parameters('prefixForDeployment')]",
         "sharedTemplateUrl": "[concat(variables('templateBaseUrl'), 'shared-resources.json')]",
         "jumpboxTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('jumpboxTemplate', parameters('jumpbox'))))]",
         "arbiterTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('arbiterTemplate', variables('clusterSpec').arbiter)))]",
         "commonSettings": {
-            "availabilitySetName": "[concat(parameters('prefixForDeployment'),'mongodbAvailSet')]",
+            "availabilitySetName": "[concat(variables('prefixForDeployment'),'mongodbAvailSet')]",
             "location": "[parameters('location')]"
         },
         "storageSettings": {
@@ -377,12 +378,12 @@
                   "networkSettings": {
                     "value": "[variables('networkSettings')]"
                   },
-                   "prefixForDeployment": {
-                        "value": "[parameters('prefixForDeployment')]"
-                    },
-                    "machineSettings": {
-                        "value": "[variables('machineSettings')]"
-                    }
+                  "prefixForDeployment": {
+                        "value": "[variables('prefixForDeployment')]"
+                  },
+                  "machineSettings": {
+                      "value": "[variables('machineSettings')]"
+                  }
                 }
             }
         },
@@ -418,7 +419,7 @@
                     "value": "[variables('networkSettings')]"
                   },
                   "prefixForDeployment": {
-                        "value": "[parameters('prefixForDeployment')]"
+                        "value": "[variables('prefixForDeployment')]"
                     },
                     "machineSettings": {
                         "value": {
@@ -505,6 +506,9 @@
             },
             "networkSettings": {
               "value": "[variables('networkSettings')]"
+            },
+            "prefixForDeployment": {
+                        "value": "[variables('prefixForDeployment')]"
             },
             "machineSettings": {
               "value": {
