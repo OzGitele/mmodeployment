@@ -53,7 +53,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-             "name": "[concat(parameters('commonSettings').prefixForDeployment, 'vmMember', parameters('machineSettings').machineIndex)]",
+            "name": "[concat('vmMember', parameters('machineSettings').machineIndex)]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "dependsOn": [
