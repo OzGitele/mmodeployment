@@ -514,38 +514,8 @@
             }
           }
         }
-      },
+      }
 
-      {
-            "type": "Microsoft.Resources/deployments",
-            "name": "frontend-resource",
-            "apiVersion": "2015-01-01",
-            "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', 'shared-resources')]"
-            ],
-            
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "https://raw.githubusercontent.com/OzGitele/mmodeployment/master/frontend-resource.json",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "commonSettings": {
-                        "value": "[variables('commonSettings')]"
-                    },
-                    "storageSettings": {
-                        "value": "value": "[variables('storageSettings')]"
-                    },
-                  "networkSettings": {
-                    "value": "[variables('networkSettings')]"
-                  },
-                  
-                    "machineSettings": {
-                        "value": "[variables('machineSettings')]"
-                    }
-                }
-            }
-        }
+      
     ]
 }
