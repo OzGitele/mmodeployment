@@ -22,7 +22,8 @@
             }
         },
         "location": {
-            "type": "string",
+          "type": "string",
+          "defaultValue": "West Europe",
             "allowedValues": [
                 "West US",
                 "East US",
@@ -36,14 +37,14 @@
         },
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "mongodbVnet",
+            "defaultValue": "mmoVnet",
             "metadata": {
                 "description": "The arbitrary name of the virtual network provisioned for the MongoDB deployment"
             }
         },
         "subnetName": {
             "type": "string",
-            "defaultValue": "mongodbSubnet",
+            "defaultValue": "mmoSubnet",
             "metadata": {
                 "description": "Subnet name for the virtual network that resources will be provisioned in to"
             }
@@ -62,13 +63,38 @@
                 "description": "The network address space for the virtual subnet"
             }
         },
-        "nodeAddressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.1",
-            "metadata": {
-                "description": "The IP address prefix that will be used for constructing a static private IP address for each node in the cluster"
-            }
-        },
+      "nodeAddressPrefix": {
+        "type": "string",
+        "defaultValue": "10.0.0.1",
+        "metadata": {
+          "description": "The IP address prefix that will be used for constructing a static private IP address for each node in the cluster"
+        }
+      },
+
+      "dnsNameForPublicIP": {
+        "type": "string",
+        "metadata": {
+          "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+        }
+      },
+      "ubuntuOSVersion": {
+        "type": "string",
+        "defaultValue": "14.04.2-LTS",
+        "allowedValues": [
+        "12.04.2-LTS",
+        "12.04.3-LTS",
+        "12.04.4-LTS",
+        "12.04.5-LTS",
+        "12.10",
+        "14.04.2-LTS",
+        "14.10",
+        "15.04"
+      ],
+        "metadata": {
+          "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
+        }
+      },
+
         "jumpbox": {
             "type": "string",
             "defaultValue": "Disabled",
