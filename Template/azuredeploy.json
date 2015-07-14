@@ -26,40 +26,60 @@
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location for the deployment."
+      }
+    },
+    "addressPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "addressPrefix."
+      }
+    },
+    "subnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "subnetName."
+      }
+    },
+    "subnetPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "subnetPrefix."
+      }
+    },
+    "virtualNetworkName": {
+      "type": "string",
+      "metadata": {
+        "description": "virtualNetworkName."
+      }
+    },
     "ubuntuOSVersion": {
       "type": "string",
-      "defaultValue": "14.04.2-LTS",
-      "allowedValues": [
-        "12.04.2-LTS",
-        "12.04.3-LTS",
-        "12.04.4-LTS",
-        "12.04.5-LTS",
-        "12.10",
-        "14.04.2-LTS",
-        "14.10",
-        "15.04"
-      ],
+      
       "metadata": {
         "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
       }
     }
   },
   "variables": {
-    "location": "West Europe",
+    "location": "[parameters('location')]", 
     "imagePublisher": "Canonical",
     "imageOffer": "UbuntuServer",
     "OSDiskName": "osdiskforlinuxsimple",
     "nicName": "myVMNic",
-    "addressPrefix": "10.0.0.0/16",
-    "subnetName": "Subnet",
-    "subnetPrefix": "10.0.0.0/24",
+    "addressPrefix": "[parameters('addressPrefix')]", 
+    "subnetName": "[parameters('subnetName')]", 
+    "subnetPrefix": "[parameters('subnetPrefix')]", ,
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "vmName": "MyUbuntuVM",
     "vmSize": "Standard_D1",
-    "virtualNetworkName": "MyVNET",
+    "virtualNetworkName": "[parameters('virtualNetworkName')]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
   },
@@ -110,7 +130,7 @@
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[variables('nicName')]",
-      "location": "[variables('location')]",
+      "location": "[parameters('location')]",
       "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
         "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
@@ -179,7 +199,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(variables('vmName'), '/CustomScriptForLinux')]",
       "apiVersion": "2015-05-01-preview",
-      "location": "West Europe",
+      "location": "[variables('location')]",
       "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
             ],
