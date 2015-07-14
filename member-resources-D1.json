@@ -33,7 +33,7 @@
     "resources": [
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'nicMember', parameters('machineSettings').machineIndex)]",
+            "name": "[concat('nicMember', parameters('machineSettings').machineIndex)]",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "properties": {
