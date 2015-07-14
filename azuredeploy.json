@@ -353,12 +353,13 @@
                   "networkSettings": {
                     "value": "[variables('networkSettings')]"
                   },
+
+                  "machineSettings": {
+                    "value": "[variables('machineSettings')]"
+                  },
                   "prefixForDeployment": {
                         "value": "[variables('prefixForDeployment')]"
-                  },
-                    "machineSettings": {
-                        "value": "[variables('machineSettings')]"
-                    }
+                  }
                 }
             }
         },
