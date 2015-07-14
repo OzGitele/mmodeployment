@@ -358,7 +358,7 @@
                     "value": "[variables('machineSettings')]"
                   },
                   "prefixForDeployment": {
-                        "value": "[variables('prefixForDeployment')]"
+                        "value": "[parameters('prefixForDeployment')]"
                   }
                 }
             }
@@ -395,7 +395,7 @@
                     "value": "[variables('networkSettings')]"
                   },
                   "prefixForDeployment": {
-                        "value": "[variables('prefixForDeployment')]"
+                        "value": "[parameters('prefixForDeployment')]"
                   },
                     "machineSettings": {
                         "value": {
@@ -484,7 +484,7 @@
                     "value": "[variables('networkSettings')]"
                   },
                   "prefixForDeployment": {
-                        "value": "[variables('prefixForDeployment')]"
+                        "value": "[parameters('prefixForDeployment')]"
                   },
                     "machineSettings": {
                         "value": {
