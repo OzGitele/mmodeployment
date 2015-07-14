@@ -33,7 +33,7 @@
     "resources": [
         {
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'nicArbiter')]",
+            "name": "nicArbiter",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "properties": {
@@ -52,7 +52,7 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(parameters('commonSettings').prefixForDeployment, 'vmArbiter')]",
+            "name": "vmArbiter",
             "apiVersion": "2015-05-01-preview",
             "location": "[parameters('commonSettings').location]",
             "dependsOn": [
