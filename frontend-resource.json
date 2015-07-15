@@ -27,30 +27,30 @@
                 "Description": "Machine settings object"
             }
         },
-    "newStorageAccountName": {
-      "type": "string",
-      "defaultValue": "mmoexperiment75storage",
-      "metadata": {
-        "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
-      }
-    },
-    "adminUsername": {
-      "type": "string",
-      "defaultValue": "mmoadmin",
-      "metadata": {
-        "description": "User name for the Virtual Machine."
-      }
-    },
-    "adminPassword": {
-      "type": "securestring",
-      "defaultValue": "WhereLinux?",
-      "metadata": {
-        "description": "Password for the Virtual Machine."
-      }
-    },
+    //"newStorageAccountName": {
+    //  "type": "string",
+    //  "defaultValue": "mmoexperiment75storage",
+    //  "metadata": {
+    //    "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
+    //  }
+    //},
+    //"adminUsername": {
+    //  "type": "string",
+    //  "defaultValue": "mmoadmin",
+    //  "metadata": {
+    //    "description": "User name for the Virtual Machine."
+    //  }
+    //},
+    //"adminPassword": {
+    //  "type": "securestring",
+    //  "defaultValue": "WhereLinux?",
+    //  "metadata": {
+    //    "description": "Password for the Virtual Machine."
+    //  }
+    //},
     "dnsNameForPublicIP": {
       "type": "string",
-      "defaultValue": "mmoexperiment76",
+      "defaultValue": "mmoexperiment78",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
@@ -93,15 +93,15 @@
     "subnetRef": "[parameters('networkSettings').subnetRef]" //"[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
   },
   "resources": [
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[parameters('newStorageAccountName')]",
-      "apiVersion": "2015-05-01-preview",
-      "location": "[variables('location')]",
-      "properties": {
-        "accountType": "[variables('storageAccountType')]"
-      }
-    },
+    //{
+    //  "type": "Microsoft.Storage/storageAccounts",
+    //  "name": "[parameters('newStorageAccountName')]",
+    //  "apiVersion": "2015-05-01-preview",
+    //  "location": "[variables('location')]",
+    //  "properties": {
+    //    "accountType": "[variables('storageAccountType')]"
+    //  }
+    //},
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/publicIPAddresses",
@@ -166,7 +166,7 @@
       "name": "[variables('vmName')]",
       "location": "[variables('location')]",
       "dependsOn": [
-        "[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
+        //"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
         "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
       ],
       "properties": {
@@ -175,8 +175,8 @@
         },
         "osProfile": {
           "computername": "[variables('vmName')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
+          "adminUsername": "[parameters('machineSettings').adminUsername]",
+          "adminPassword": "[parameters('machineSettings').adminPassword]"
         },
         "storageProfile": {
           "imageReference": {
@@ -188,7 +188,7 @@
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
+              "uri": "[concat('http://',concat(parameters('storageSettings').vhdStorageAccountName, copyindex()),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
