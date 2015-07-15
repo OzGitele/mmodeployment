@@ -76,15 +76,15 @@
     "subnetRef": "[parameters('networkSettings').subnetRef]" //"[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
   },
   "resources": [
-    //{
-    //  "type": "Microsoft.Storage/storageAccounts",
-    //  "name": "[parameters('newStorageAccountName')]",
-    //  "apiVersion": "2015-05-01-preview",
-    //  "location": "[variables('location')]",
-    //  "properties": {
-    //    "accountType": "[variables('storageAccountType')]"
-    //  }
-    //},
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[parameters('storageSettings').storageNameForFrontEnd]",
+      "apiVersion": "2015-05-01-preview",
+      "location": "[variables('location')]",
+      "properties": {
+        "accountType": "[variables('storageAccountType')]"
+      }
+    },
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/publicIPAddresses",
@@ -149,7 +149,7 @@
       "name": "[variables('vmName')]",
       "location": "[variables('location')]",
       "dependsOn": [
-        //"[concat('Microsoft.Storage/storageAccounts/', parameters('newStorageAccountName'))]",
+        "[concat('Microsoft.Storage/storageAccounts/', parameters('storageSettings').storageNameForFrontEnd)]",
         "[concat('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
       ],
       "properties": {
