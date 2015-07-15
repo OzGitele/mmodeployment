@@ -76,6 +76,18 @@
           "description": "Prefix for all resource names in deployment."
         }
       },
+      "storageNameForFrontEnd": {
+        "type": "string",
+        "metadata": {
+          "description": "Name of storage for front end VM's."
+        }
+      },
+      "dnsNameForPublicIP": {
+        "type": "string",
+        "metadata": {
+          "description": "Unique DNS Name for the Public IP used to access the front end Virtual Machine."
+        }
+      },
         "ubuntuOSVersion": {
         "type": "string",
         "defaultValue": "14.04.2-LTS",
@@ -90,7 +102,7 @@
           "15.04"
         ],
         "metadata": {
-          "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
+          "description": "The Ubuntu version for the front end VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
         }
       },
         "jumpbox": {
@@ -244,7 +256,8 @@
             "vhdStorageAccountName": "[parameters('storageAccountName')]",
             "vhdContainerName": "[variables('vmStorageAccountContainerName')]",
             "destinationVhdsContainer": "[concat('https://', parameters('storageAccountName'), variables('vmStorageAccountDomain'), '/', variables('vmStorageAccountContainerName'), '/')]",
-            "storageAccountCount": "[variables('clusterSpec').storageAccountCount]"
+          "storageAccountCount": "[variables('clusterSpec').storageAccountCount]",
+          "storageNameForFrontEnd": "[parameters('storageNameForFrontEnd')]"
         },
         "networkSettings": {
             "virtualNetworkName": "[parameters('virtualNetworkName')]",
@@ -259,7 +272,8 @@
             "adminUsername": "[parameters('adminUsername')]",
             "adminPassword": "[parameters('adminPassword')]",
             "machineNamePrefix": "mongodb-",
-            "ubuntuOSVersion":  "[parameters('ubuntuOSVersion')]",
+          "ubuntuOSVersion": "[parameters('ubuntuOSVersion')]",
+          "dnsNameForPublicIP": "[parameters('dnsNameForPublicIP')]",
             "osImageReference": {
                 "publisher": "[variables('osFamilySpec').imagePublisher]",
                 "offer": "[variables('osFamilySpec').imageOffer]",

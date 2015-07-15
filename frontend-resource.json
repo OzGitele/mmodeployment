@@ -48,30 +48,13 @@
     //    "description": "Password for the Virtual Machine."
     //  }
     //},
-    "dnsNameForPublicIP": {
-      "type": "string",
-      "defaultValue": "mmoexperiment78",
-      "metadata": {
-        "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
-      }
-    },
-    "ubuntuOSVersion": {
-      "type": "string",
-      "defaultValue": "14.04.2-LTS",
-      "allowedValues": [
-        "12.04.2-LTS",
-        "12.04.3-LTS",
-        "12.04.4-LTS",
-        "12.04.5-LTS",
-        "12.10",
-        "14.04.2-LTS",
-        "14.10",
-        "15.04"
-      ],
-      "metadata": {
-        "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04."
-      }
-    }
+    //"dnsNameForPublicIP": {
+    //  "type": "string",
+    //  "defaultValue": "mmoexperiment78",
+    //  "metadata": {
+    //    "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
+    //  }
+    //}
   },
   "variables": {
     "location": "West Europe",
@@ -110,7 +93,7 @@
       "properties": {
         "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
         "dnsSettings": {
-          "domainNameLabel": "[parameters('dnsNameForPublicIP')]"
+          "domainNameLabel": "[parameters('machineSettings').dnsNameForPublicIP]"
         }
       }
     },
@@ -182,13 +165,13 @@
           "imageReference": {
             "publisher": "[variables('imagePublisher')]",
             "offer": "[variables('imageOffer')]",
-            "sku": "[parameters('ubuntuOSVersion')]",
+            "sku": "[parameters('machineSettings').ubuntuOSVersion]",
             "version": "latest"
           },
           "osDisk": {
             "name": "osdisk",
             "vhd": {
-              "uri": "[concat('http://',concat(parameters('storageSettings').vhdStorageAccountName, copyindex()),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
+              "uri": "[concat('http://',parameters('storageSettings').storageNameForFrontEnd,'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('OSDiskName'),'.vhd')]"
             },
             "caching": "ReadWrite",
             "createOption": "FromImage"
