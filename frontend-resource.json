@@ -50,7 +50,7 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
-      "defaultValue": "mmoexperiment72",
+      "defaultValue": "mmoexperiment76",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
