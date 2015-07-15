@@ -88,7 +88,7 @@
     "vmStorageAccountContainerName": "vhds",
     "vmName": "MyUbuntuVM",
     "vmSize": "Standard_D1",
-    "virtualNetworkName": "MyVNET",
+    "virtualNetworkName": "[concat(parameters('networkSettings').virtualNetworkName)]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
   },
@@ -114,27 +114,27 @@
         }
       }
     },
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[variables('virtualNetworkName')]",
-      "location": "[variables('location')]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[variables('addressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[variables('subnetName')]",
-            "properties": {
-              "addressPrefix": "[variables('subnetPrefix')]"
-            }
-          }
-        ]
-      }
-    },
+    //{
+    //  "apiVersion": "2015-05-01-preview",
+    //  "type": "Microsoft.Network/virtualNetworks",
+    //  "name": "[variables('virtualNetworkName')]",
+    //  "location": "[variables('location')]",
+    //  "properties": {
+    //    "addressSpace": {
+    //      "addressPrefixes": [
+    //        "[variables('addressPrefix')]"
+    //      ]
+    //    },
+    //    "subnets": [
+    //      {
+    //        "name": "[variables('subnetName')]",
+    //        "properties": {
+    //          "addressPrefix": "[variables('subnetPrefix')]"
+    //        }
+    //      }
+    //    ]
+    //  }
+    //},
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
