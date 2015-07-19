@@ -18,6 +18,18 @@ exports.index = function (req, res) {
             
             // do some work here with the database.
             var collection = db.collection('tasks');
+            var task1 = { itemName: 'Item1', itemCategory: 'Cat1', itemCompleted: false, itemDate: Date.now };
+            var task2 = { itemName: 'Item2', itemCategory: 'Cat1', itemCompleted: false, itemDate: Date.now };
+            var task3 = { itemName: 'Item3', itemCategory: 'Cat2', itemCompleted: false, itemDate: Date.now };
+
+            collection.insert([task1, task2, task3], function (err, result) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log('Inserted %d documents into the "tasks" collection. The documents inserted with "_id" are:', result.length, result);
+                }
+            });
             var all = collection.find({ itemCompleted: false }).toArray(function (err, result) {
                 if (err) {
                     console.log(err);
@@ -26,20 +38,11 @@ exports.index = function (req, res) {
                 } else {
                     console.log('No document(s) found with defined "find" criteria!');
                 }
-
-            //var task1 = { itemName: 'Item1', itemCategory: 'Cat1', itemCompleted: false, itemDate : Date.now};
-            //var task2 = { itemName: 'Item2', itemCategory: 'Cat1', itemCompleted: false, itemDate : Date.now };
-            //var task3 = { itemName: 'Item3', itemCategory: 'Cat2', itemCompleted: false, itemDate : Date.now };
-
-            //collection.insert([task1, task2, task3], function (err, result) {
-            //    if (err) {
-            //        console.log(err);
-            //    } else {
-            //        console.log('Inserted %d documents into the "tasks" collection. The documents inserted with "_id" are:', result.length, result);
-            //    }
+            });
+            
                 //Close connection
                 db.close();
-            });
+            
         }
     });
     console.log("connected");
