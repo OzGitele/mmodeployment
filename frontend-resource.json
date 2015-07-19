@@ -190,7 +190,7 @@
       "type": "Microsoft.Compute/virtualMachines/extensions",
       "name": "[concat(variables('vmName'), '/CustomScriptForLinux')]",
       "apiVersion": "2015-05-01-preview",
-      "location": "West Europe",
+      "location": "[variables('location')]",
       "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
             ],
@@ -203,7 +203,7 @@
           "settings": {
 
             "fileUris": [
-              "https://raw.githubusercontent.com/OzGitele/linuxproject/master/Script/templateScript.sh"
+              "https://raw.githubusercontent.com/OzGitele/mmodeployment/master/Script/templateScript.sh"
 
             ],
             "commandToExecute": "sh templateScript.sh"
