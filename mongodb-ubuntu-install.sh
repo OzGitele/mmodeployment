@@ -292,7 +292,7 @@ net:
     port: $MONGODB_PORT
 security:
     #keyFile: ""
-    authorization: "disabled"
+    authorization: "enabled"
 storage:
     dbPath: "$MONGODB_DATA/db"
     directoryPerDB: true
