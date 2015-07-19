@@ -6,7 +6,8 @@ var mongodb = require("mongodb");
 exports.index = function (req, res) {
     
     
-    var url = "mongodb://mongodbvm-8t75no40.cloudapp.net";
+    //var url = "mongodb://mongodbvm-8t75no40.cloudapp.net";
+    var url = "mongodb://10.0.0.10:27017,10.0.0.11:27017, 10.0.0.12:27017/desolation?replicaSet=rs0";
     var MongoClient = mongodb.MongoClient;
 
     MongoClient.connect(url, function (err, db) {
