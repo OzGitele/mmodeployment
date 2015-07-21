@@ -20,7 +20,7 @@ exports.getData = function (req, res) {
 
             // do some work here with the database.
             var collection = db.collection('tasks');
-            db.collection.remove();
+            collection.remove();
             var task1 = { itemName: 'Item7', itemCategory: 'Cat2', itemCompleted: false, itemDate: Date.now };
             var task2 = { itemName: 'Item8', itemCategory: 'Cat2', itemCompleted: false, itemDate: Date.now };
             var task3 = { itemName: 'Item9', itemCategory: 'Cat1', itemCompleted: false, itemDate: Date.now };
