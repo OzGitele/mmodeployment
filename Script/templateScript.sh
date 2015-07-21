@@ -10,10 +10,10 @@ sudo apt-get -y install git-core
 cd /
 sudo mkdir /repos
 cd repos
-sudo mkdir linuxproject
+sudo mkdir mmodeployment
 sudo git init
-sudo git clone https://github.com/OzGitele/linuxproject.git 
-cd linuxproject/mmofrontend
+sudo git clone -b nodeonly  https://github.com/OzGitele/mmodeployment.git 
+cd mmodeployment/mmofrontend
 
 
 
