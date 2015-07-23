@@ -26,35 +26,8 @@
             "metadata": {
                 "Description": "Machine settings object"
             }
-        },
-    //"newStorageAccountName": {
-    //  "type": "string",
-    //  "defaultValue": "mmoexperiment75storage",
-    //  "metadata": {
-    //    "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
-    //  }
-    //},
-    //"adminUsername": {
-    //  "type": "string",
-    //  "defaultValue": "mmoadmin",
-    //  "metadata": {
-    //    "description": "User name for the Virtual Machine."
-    //  }
-    //},
-    //"adminPassword": {
-    //  "type": "securestring",
-    //  "defaultValue": "WhereLinux?",
-    //  "metadata": {
-    //    "description": "Password for the Virtual Machine."
-    //  }
-    //},
-    //"dnsNameForPublicIP": {
-    //  "type": "string",
-    //  "defaultValue": "mmoexperiment78",
-    //  "metadata": {
-    //    "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
-    //  }
-    //}
+        }
+    
   },
   "variables": {
     "location": "[parameters('commonSettings').location]",
@@ -62,9 +35,6 @@
     "imageOffer": "UbuntuServer",
     "OSDiskName": "osdiskforlinuxsimple",
     "nicName": "myVMNic",
-    //"addressPrefix": "10.0.0.0/16",
-    //"subnetName": "Subnet",
-    //"subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "myPublicIP",
     "publicIPAddressType": "Dynamic",
@@ -97,27 +67,6 @@
         }
       }
     },
-    //{
-    //  "apiVersion": "2015-05-01-preview",
-    //  "type": "Microsoft.Network/virtualNetworks",
-    //  "name": "[variables('virtualNetworkName')]",
-    //  "location": "[variables('location')]",
-    //  "properties": {
-    //    "addressSpace": {
-    //      "addressPrefixes": [
-    //        "[variables('addressPrefix')]"
-    //      ]
-    //    },
-    //    "subnets": [
-    //      {
-    //        "name": "[variables('subnetName')]",
-    //        "properties": {
-    //          "addressPrefix": "[variables('subnetPrefix')]"
-    //        }
-    //      }
-    //    ]
-    //  }
-    //},
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Network/networkInterfaces",
