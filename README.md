@@ -1,11 +1,11 @@
-# Deploy a highly available MongoDB installation on Ubuntu and CentOS virtual machines
+# Deploy a Node js service connected to a highly available MongoDB installation on Ubuntu and CentOS virtual machines
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FOzGitele%2Fmmodeployment%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
 This template is intended for load testing a configuration of a Node.js front-end server that interacts with a MongoDB. The template is a merge
-of 2 template - azure-quickstart-templates/mongodb-high-availability and 101-simple-linux-vm.
+of 2 templates - azure-quickstart-templates/mongodb-high-availability and 101-simple-linux-vm.
 
 The template creates a multi-server MongoDB deployment on Ubuntu and CentOS virtual machines, and configures the MongoDB installation for high availability using a replica set.
 The template also provisions storage accounts, virtual network, availability set, network interfaces, VMs, disks and other infrastructure and runtime resources required by the installation.
