@@ -4,22 +4,23 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template is intended for load testing a configuration of a Node.js front-end server that interacts with a MongoDB for a Massive Multiplayer Online scenario. The template is a merge
+This template deploys a configuration of a Node.js front-end server that interacts with a MongoDB cluster. The template is a merge
 of 2 templates - azure-quickstart-templates/mongodb-high-availability and 101-simple-linux-vm.
 
 The template creates a multi-server MongoDB deployment on Ubuntu and CentOS virtual machines, and configures the MongoDB installation for high availability using a replica set.
 The template also provisions storage accounts, virtual network, availability set, network interfaces, VMs, disks and other infrastructure and runtime resources required by the installation.
 In addition, and when explicitly enabled, the template can create one publicly accessible "jumpbox" VM allowing to ssh into the MongoDB nodes for diagnostics or troubleshooting purposes.
 
-The template also creates a Linux VM and installs a Node.js (Express) server on it that connects to the MongoDB cluster.
- 
-The Node.js service exposes a REST GET endpoint (/webapi) that deletes, inserts and retrieves 3 tasks from a Tasks database. SSH into the Ubuntu VM (using Putty www.putty.org), navigate to repos/mmodeployment/mmofrontend/Routes/webapi.js and modify the workload as needed.
-Navigate to repos/mmodeployment/mmofrontend and run nodejs app.js. Open a browser with the IP from the Azure portal, on port 8080/api. You should get a JSON file with 3 tasks.
- 
+The template also creates a Linux/Ubunutu VM in the same virtual network and installs a Node.js (Express) server on it that connects to the MongoDB cluster.
+The Node.js service exposes a REST GET endpoint (/) that deletes, inserts and retrieves 3 tasks from a Tasks database. SSH into the Ubuntu VM (using Putty www.putty.org), navigate to /usr/app.js and modify the workload as needed.
+
 Credentials - 
 The adminUsername and adminPassword are administrators of all the VM's, the MongoDB database and the Tasks database.
-These credentials are hard coded in the connection string in the Node js server, in repos/mmodeployment/mmofrontend/Routes/webapi.js. Modify accordingly.
+These credentials are hard coded in the connection string in the Node js server, in /usr/api.js. Modify accordingly.
 Please do not use a question mark in the adminUsername and/or the adminPassword. 
+
+Navigate to /usr and run sudo nodejs app.js.
+Open a browser with the public IP of the MyUbuntuVM machine from the Azure portal, on port 8080. You should get a JSON file with 3 tasks.
 
 The template expects the following parameters:
 
