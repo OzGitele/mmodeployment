@@ -5,21 +5,21 @@
 </a>
 
 This template deploys a configuration of a Node.js front-end server that interacts with a MongoDB cluster. The template is a merge
-of 2 templates - azure-quickstart-templates/mongodb-high-availability and 101-simple-linux-vm.
+of 2 templates - <a href="https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-high-availability">azure-quickstart-templates/mongodb-high-availability</a> and <a href="https://github.com/Azure/azure-quickstart-templates/tree/master/101-simple-linux-vm">101-simple-linux-vm</a>.
 
 The template creates a multi-server MongoDB deployment on Ubuntu and CentOS virtual machines, and configures the MongoDB installation for high availability using a replica set.
 The template also provisions storage accounts, virtual network, availability set, network interfaces, VMs, disks and other infrastructure and runtime resources required by the installation.
 In addition, and when explicitly enabled, the template can create one publicly accessible "jumpbox" VM allowing to ssh into the MongoDB nodes for diagnostics or troubleshooting purposes.
 
-The template also creates a Linux/Ubunutu VM in the same virtual network and installs a Node.js (Express) server on it that connects to the MongoDB cluster.
-The Node.js service exposes a REST GET endpoint (/) that deletes, inserts and retrieves 3 tasks from a Tasks database. SSH into the Ubuntu VM (using Putty www.putty.org), navigate to /usr/app.js and modify the workload as needed.
+The template also creates a Linux/Ubuntu VM in the same virtual network and installs a Node.js (Express) server on it that connects to the MongoDB cluster.
+The Node.js service exposes a REST GET endpoint that deletes, inserts and retrieves 3 tasks from a Tasks database. SSH into the Ubuntu VM (using Putty www.putty.org), navigate to /opt/app.js and modify the workload as needed.
 
 Credentials - 
 The adminUsername and adminPassword are administrators of all the VM's, the MongoDB database and the Tasks database.
-These credentials are hard coded in the connection string in the Node js server, in /usr/api.js. Modify accordingly.
+These credentials are hard coded in the connection string in the Node js server, in /opt/api.js. Modify according to adminUsername:adminPassword you entered in the parameters.
 Please do not use a question mark in the adminUsername and/or the adminPassword. 
 
-Navigate to /usr and run sudo nodejs app.js.
+Navigate to /opt and run sudo nodejs app.js.
 Open a browser with the public IP of the MyUbuntuVM machine from the Azure portal, on port 8080. You should get a JSON file with 3 tasks.
 
 The template expects the following parameters:
