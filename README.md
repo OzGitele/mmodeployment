@@ -19,7 +19,7 @@ Navigate to repos/mmodeployment/mmofrontend and run nodejs app.js. Open a browse
 Credentials - 
 The adminUsername and adminPassword are administrators of all the VM's, the MongoDB database and the Tasks database.
 These credentials are hard coded in the connection string in the Node js server, in repos/mmodeployment/mmofrontend/Routes/webapi.js. Modify accordingly.
- 
+Please do not use a question mark in the adminUsername and/or the adminPassword. 
 
 The template expects the following parameters:
 

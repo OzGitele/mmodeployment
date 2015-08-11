@@ -43,7 +43,7 @@
     "vmSize": "Standard_D1",
     "virtualNetworkName": "[concat(parameters('networkSettings').virtualNetworkName)]",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
-    "subnetRef": "[parameters('networkSettings').subnetRef]" //"[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
+    "subnetRef": "[parameters('networkSettings').subnetRef]" 
   },
   "resources": [
     {
@@ -152,7 +152,8 @@
           "settings": {
 
             "fileUris": [
-              "https://raw.githubusercontent.com/OzGitele/mmodeployment/master/Script/templateScript.sh"
+              "https://raw.githubusercontent.com/OzGitele/mmodeployment/master/Script/templateScript.sh",
+              "https://raw.githubusercontent.com/OzGitele/mmodeployment/master/mmofrontend/app.js"
 
             ],
             "commandToExecute": "sh templateScript.sh"
