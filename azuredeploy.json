@@ -70,12 +70,6 @@
           "description": "The IP address prefix that will be used for constructing a static private IP address for each node in the cluster"
         }
       },
-      "prefixForDeployment": {
-        "type": "string",
-        "metadata": {
-          "description": "Prefix for all resource names in deployment."
-        }
-      },
       "storageNameForFrontEnd": {
         "type": "string",
         "metadata": {
@@ -243,14 +237,12 @@
         "jumpboxTemplateDisabled": "empty-resources.json",
         "arbiterTemplateEnabled": "arbiter-resources.json",
         "arbiterTemplateDisabled": "empty-resources.json",
-        "prefixForDeployment": "[parameters('prefixForDeployment')]",
         "sharedTemplateUrl": "[concat(variables('templateBaseUrl'), 'shared-resources.json')]",
         "jumpboxTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('jumpboxTemplate', parameters('jumpbox'))))]",
         "arbiterTemplateUrl": "[concat(variables('templateBaseUrl'), variables(concat('arbiterTemplate', variables('clusterSpec').arbiter)))]",
         "commonSettings": {
-            "availabilitySetName": "[concat(variables('prefixForDeployment'),'mongodbAvailSet')]",
-          "location": "[parameters('location')]",
-          "prefixForDeployment": "[parameters('prefixForDeployment')]"
+            "availabilitySetName": "mongodbAvailSet",
+          "location": "[parameters('location')]"
         },
         "storageSettings": {
             "vhdStorageAccountName": "[parameters('storageAccountName')]",

@@ -4,22 +4,29 @@
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-This template is intended for load testing a configuration of a Node.js front-end server that interacts with a MongoDB. The template is a merge
+This template is intended for load testing a configuration of a Node.js front-end server that interacts with a MongoDB for a Massive Multiplayer Online scenario. The template is a merge
 of 2 templates - azure-quickstart-templates/mongodb-high-availability and 101-simple-linux-vm.
 
 The template creates a multi-server MongoDB deployment on Ubuntu and CentOS virtual machines, and configures the MongoDB installation for high availability using a replica set.
 The template also provisions storage accounts, virtual network, availability set, network interfaces, VMs, disks and other infrastructure and runtime resources required by the installation.
 In addition, and when explicitly enabled, the template can create one publicly accessible "jumpbox" VM allowing to ssh into the MongoDB nodes for diagnostics or troubleshooting purposes.
 
-The template also creates a Linux VM and installs a Node.js server on it that connects to the MongoDB cluster. After deployment, ssh into the index.js file and set the 
-credentials in the connection string.
-The Node.js service exposes a REST GET endpoint that deletes, inserts and retrieves 3 tasks from a Tasks database. Modify the workload as needed.
+The template also creates a Linux VM and installs a Node.js (Express) server on it that connects to the MongoDB cluster.
+ 
+The Node.js service exposes a REST GET endpoint (/webapi) that deletes, inserts and retrieves 3 tasks from a Tasks database. SSH into the Ubuntu VM (using Putty www.putty.org), navigate to repos/mmodeployment/mmofrontend/Routes/webapi.js and modify the workload as needed.
+Navigate to repos/mmodeployment/mmofrontend and run nodejs app.js. Open a browser with the IP from the Azure portal, on port 8080/api. You should get a JSON file with 3 tasks.
+ 
+Credentials - 
+The adminUsername and adminPassword are administrators of all the VM's, the MongoDB database and the Tasks database.
+These credentials are hard coded in the connection string in the Node js server, in repos/mmodeployment/mmofrontend/Routes/webapi.js. Modify accordingly.
+ 
+
 The template expects the following parameters:
 
 | Name   | Description | Default Value |
 |:--- |:---|:---|
-| adminUsername  | Administrator user name used when provisioning virtual machines (which also becomes a system administrator in MongoDB) | |
-| adminPassword  | Administrator password used when provisioning virtual machines (which is also a password for the system administrator in MongoDB) | |
+| adminUsername  | Administrator user name used when provisioning virtual machines (which also becomes a system administrator in MongoDB and the Node js server VM) | |
+| adminPassword  | Administrator password used when provisioning virtual machines (which is also a password for the system administrator in MongoDB and the Node js server VM) | |
 | storageAccountName | Unique namespace for a new storage account where the virtual machine's disks will be placed (it will be used as a prefix to create one or more new storage accounts as per t-shirt size) | |
 | location | Location where resources will be provisioned | |
 | virtualNetworkName | The arbitrary name of the virtual network provisioned for the MongoDB deployment | mongodbVnet |
@@ -27,6 +34,9 @@ The template expects the following parameters:
 | addressPrefix | The network address space for the virtual network | 10.0.0.0/16 |
 | subnetPrefix | The network address space for the virtual subnet | 10.0.0.0/24 |
 | nodeAddressPrefix | The IP address prefix that will be used for constructing a static private IP address for each node in the cluster | 10.0.0.1 |
+| storageNameForFrontEnd | Unique DNS Name for the Storage Account where the Node server Virtual Machine's disks will be placed. |
+| dnsNameForPublicIP | Unique DNS Name for the Public IP used to access the Node server VM. |
+| ubuntuOSVersion | The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version. Allowed values: 12.04.2-LTS, 12.04.3-LTS, 12.04.4-LTS, 12.04.5-LTS, 12.10, 14.04.2-LTS, 14.10, 15.04 |
 | jumpbox | The flag allowing to enable or disable provisioning of the jumpbox VM that can be used to access the MongoDB environment | Disabled | 
 | tshirtSize | The t-shirt size of the MongoDB deployment (_XSmall_, _Small_, _Medium_, _Large_, _XLarge_, _XXLarge_) | XSmall |
 | osFamily | The target OS for the virtual machines running MongoDB (_Ubuntu_ or _CentOS_) | Ubuntu |
@@ -34,7 +44,7 @@ The template expects the following parameters:
 | replicaSetName | The name of the MongoDB replica set | rs0 |
 | replicaSetKey | The shared secret key for the MongoDB replica set (6-1024 characters) |||
 
-Topology
+MongoDB Topology
 --------
 
 The deployment topology is comprised of a predefined number (as per t-shirt sizing) MongoDB member nodes configured as a replica set, along with the optional
